@@ -89,7 +89,5 @@ def run_agent(question: str):
 
 
 if __name__ == "__main__":
-    result = run_agent(
-        "What is the price of 'Asus Tuf F15' after apply gold discount?"
-    )
+    result = run_agent("What is the price of 'Asus Tuf F15' after apply gold discount?")
     print(result)

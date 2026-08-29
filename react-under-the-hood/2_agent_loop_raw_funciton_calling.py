@@ -11,6 +11,7 @@ MAX_AGENT_ITERATIONS = 10
 MODEL = "gemini-2.5-flash-lite"
 genai_client = genai.Client()
 
+
 # --- Tools ---
 @traceable(run_type="tool")
 def get_product_price(product: str) -> float:
@@ -18,6 +19,7 @@ def get_product_price(product: str) -> float:
     print(f"    >> Executing get_product_price({product})")
     prices = {"Asus Tuf F15": 1299.00, "Dell G15": 1199.99}
     return prices.get(product, 0)
+
 
 @traceable(run_type="tool")
 def apply_discount(price: float, discount_tier: str) -> float:
@@ -67,15 +69,9 @@ tools = [
 ]
 
 
-function_declarations = [
-    types.FunctionDeclaration(**tool)
-    for tool in tools
-]
+function_declarations = [types.FunctionDeclaration(**tool) for tool in tools]
 
-tool = types.Tool(
-    function_declarations=function_declarations
-)
-
+tool = types.Tool(function_declarations=function_declarations)
 
 
 system_instruction = (
@@ -106,23 +102,18 @@ def google_ai(model: str, contents: List):
         ),
     )
 
+
 # --- Agent Loop ---
 @traceable(name="Google Gen AI SDK Agent Loop")
 def run_agent(question: str):
-    
+
     tools_dict = {
-            "get_product_price": get_product_price,
-            "apply_discount": apply_discount
-            }
+        "get_product_price": get_product_price,
+        "apply_discount": apply_discount,
+    }
 
     contents = [
-            types.UserContent(
-                parts=[
-                    types.Part.from_text(
-                        text=question
-                    )
-                ]
-            ),
+        types.UserContent(parts=[types.Part.from_text(text=question)]),
     ]
     for i in range(1, MAX_AGENT_ITERATIONS + 1):
         print(f"[Iteration]: {i}")
@@ -140,20 +131,16 @@ def run_agent(question: str):
             raise ValueError(f"Tool '{tool_name}' not found.")
         observation = tool_to_use(**tool_args)
 
-        print(
-            f"[ToolsObservation]: "
-            f"{tool_name} -> {observation}"
-        )
+        print(f"[ToolsObservation]: " f"{tool_name} -> {observation}")
         contents.append(response.candidates[0].content)
         contents.append(
             types.Content(
-                role='tool',
+                role="tool",
                 parts=[
                     types.Part.from_function_response(
-                        name=tool_name,
-                        response={"result": observation}
+                        name=tool_name, response={"result": observation}
                     )
-                ]
+                ],
             )
         )
 
@@ -162,7 +149,5 @@ def run_agent(question: str):
 
 
 if __name__ == "__main__":
-    result = run_agent(
-        "What is the price of 'Asus Tuf F15' after apply gold discount?"
-    )
+    result = run_agent("What is the price of 'Asus Tuf F15' after apply gold discount?")
     print(result)
