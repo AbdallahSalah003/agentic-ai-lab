@@ -1,0 +1,182 @@
+from langchain_core.messages import HumanMessage, AIMessage, SystemMessage, ToolMessage
+
+{
+    "messages": [
+        HumanMessage(
+            content="What is the temperature in Cairo? list it and then triple it.",
+            additional_kwargs={},
+            response_metadata={},
+            id="1525466e-7e17-49b8-9ebd-24b9a5757f37",
+        ),
+        AIMessage(
+            content="",
+            additional_kwargs={"refusal": None},
+            response_metadata={
+                "token_usage": {
+                    "completion_tokens": 24,
+                    "prompt_tokens": 1246,
+                    "total_tokens": 1270,
+                    "completion_tokens_details": {
+                        "accepted_prediction_tokens": 0,
+                        "audio_tokens": 0,
+                        "reasoning_tokens": 0,
+                        "rejected_prediction_tokens": 0,
+                        "text_tokens": None,
+                    },
+                    "compute_units": None,
+                    "prompt_tokens_details": {
+                        "audio_tokens": 0,
+                        "cache_write_tokens": None,
+                        "cached_tokens": 1152,
+                        "image_tokens": None,
+                        "text_tokens": None,
+                    },
+                },
+                "model_provider": "openai",
+                "model_name": "gpt-4.1-nano-2025-04-14",
+                "system_fingerprint": "fp_639977306b",
+                "id": "chatcmpl-EIZpUAonESng0CKHGMXyGq7VqON57",
+                "service_tier": "default",
+                "finish_reason": "tool_calls",
+                "logprobs": None,
+            },
+            id="lc_run--01a052d8-de41-7bb2-9d85-0dddaa28571e-0",
+            tool_calls=[
+                {
+                    "name": "tavily_search",
+                    "args": {
+                        "query": "current temperature in Cairo",
+                        "search_depth": "basic",
+                    },
+                    "id": "call_3P20oSQgZZZzlp8RRC9qAoBI",
+                    "type": "tool_call",
+                }
+            ],
+            invalid_tool_calls=[],
+            usage_metadata={
+                "input_tokens": 1246,
+                "output_tokens": 24,
+                "total_tokens": 1270,
+                "input_token_details": {"audio": 0, "cache_read": 1152},
+                "output_token_details": {"audio": 0, "reasoning": 0},
+            },
+        ),
+        ToolMessage(
+            content='{"query": "current temperature in Cairo", "follow_up_questions": null, "answer": null, "images": [], "results": [{"url": "https://www.theweathernetwork.com/en/city/eg/al-qahirah/cairo/current", "title": "Cairo, C, EG Current Weather - The Weather Network", "content": "What is the current temperature in Cairo?\\n\\n25°\\n\\nWhat is the “feels like” temperature in Cairo?\\n\\n25°\\n\\nWhat is the high and low temperature today in Cairo?\\n\\n38°\\n\\n24°\\n\\nWhat is the probability of rain or snow today in Cairo?\\n\\n10% P.O.P.\\n\\nHow much will it rain or snow today in Cairo?\\n\\nNone expected\\n\\nWhat is the current wind speed and direction in Cairo?\\n\\n15 km/h NW\\n\\nWhat is the current humidity level in Cairo?\\n\\nAre there any active weather alerts in Cairo?\\n\\nWhat is the UV index right now in Cairo? [...] |\\n\\n# Cairo, C, EG Current Weather\\n\\nCairo, C, EG\\n\\nUpdated9 minutes ago\\n\\n°C\\n\\nClear\\n\\nFeels25\\n\\nH:38°   L:24°\\n\\n## Hourly\\n\\nFull 72 hours\\n\\n4am\\n\\nClear\\n\\n25°\\n\\nFeels 25\\n\\nPOP\\n\\n0%\\n\\n5am\\n\\nClear\\n\\n24°\\n\\nFeels 24\\n\\nPOP\\n\\n0%\\n\\n6am\\n\\nSunny\\n\\n24°\\n\\nFeels 24\\n\\nPOP\\n\\n0%\\n\\n7am\\n\\nSunny\\n\\n24°\\n\\nFeels 24\\n\\nPOP\\n\\n0%\\n\\n8am\\n\\nSunny\\n\\n25°\\n\\nFeels 25\\n\\nPOP\\n\\n0%\\n\\nClear for the next 6 hours becoming sunny midday.\\n\\n## Today’s Conditions\\n\\n --\\n\\n  Sunrise\\n\\n  --\\n\\n  Sunset\\n\\n  --\\n\\n  No Data Available\\n Wind\\n\\n  --\\n\\n  Gust:\\n\\n  --", "score": 0.8358192, "raw_content": null, "id": "aef60b-00"}], "response_time": 0.0, "request_id": "ba02ff40-44ee-4aa3-9a83-e05bafd6709f"}',
+            name="tavily_search",
+            id="cc5fd398-2eae-49c7-9596-9b7a2b03b7b6",
+            tool_call_id="call_3P20oSQgZZZzlp8RRC9qAoBI",
+        ),
+        AIMessage(
+            content="",
+            additional_kwargs={"refusal": None},
+            response_metadata={
+                "token_usage": {
+                    "completion_tokens": 44,
+                    "prompt_tokens": 1809,
+                    "total_tokens": 1853,
+                    "completion_tokens_details": {
+                        "accepted_prediction_tokens": 0,
+                        "audio_tokens": 0,
+                        "reasoning_tokens": 0,
+                        "rejected_prediction_tokens": 0,
+                        "text_tokens": None,
+                    },
+                    "compute_units": None,
+                    "prompt_tokens_details": {
+                        "audio_tokens": 0,
+                        "cache_write_tokens": None,
+                        "cached_tokens": 0,
+                        "image_tokens": None,
+                        "text_tokens": None,
+                    },
+                },
+                "model_provider": "openai",
+                "model_name": "gpt-4.1-nano-2025-04-14",
+                "system_fingerprint": "fp_639977306b",
+                "id": "chatcmpl-EIZpWLNssUapAdAl9z7o8HrL9qHg3",
+                "service_tier": "default",
+                "finish_reason": "tool_calls",
+                "logprobs": None,
+            },
+            id="lc_run--01a052d8-e664-79f3-9e5f-c77856a2f89c-0",
+            tool_calls=[
+                {
+                    "name": "triple",
+                    "args": {"num": 25},
+                    "id": "call_QEWGKNLom8YLjiLejjD1gj0p",
+                    "type": "tool_call",
+                },
+                {
+                    "name": "triple",
+                    "args": {"num": 24},
+                    "id": "call_hs0sMN6PwPUPfaJsfWBftLay",
+                    "type": "tool_call",
+                },
+            ],
+            invalid_tool_calls=[],
+            usage_metadata={
+                "input_tokens": 1809,
+                "output_tokens": 44,
+                "total_tokens": 1853,
+                "input_token_details": {"audio": 0, "cache_read": 0},
+                "output_token_details": {"audio": 0, "reasoning": 0},
+            },
+        ),
+        ToolMessage(
+            content="75.0",
+            name="triple",
+            id="22f01907-8faa-40c8-8b29-59620427e394",
+            tool_call_id="call_QEWGKNLom8YLjiLejjD1gj0p",
+        ),
+        ToolMessage(
+            content="72.0",
+            name="triple",
+            id="e534c6c8-a695-41ab-a575-0d132b865fa1",
+            tool_call_id="call_hs0sMN6PwPUPfaJsfWBftLay",
+        ),
+        AIMessage(
+            content="The current temperature in Cairo is approximately 25°C. When tripled, it becomes 75°C for the 25°C temperature and 72°C for the 24°C temperature.",
+            additional_kwargs={"refusal": None},
+            response_metadata={
+                "token_usage": {
+                    "completion_tokens": 38,
+                    "prompt_tokens": 1873,
+                    "total_tokens": 1911,
+                    "completion_tokens_details": {
+                        "accepted_prediction_tokens": 0,
+                        "audio_tokens": 0,
+                        "reasoning_tokens": 0,
+                        "rejected_prediction_tokens": 0,
+                        "text_tokens": None,
+                    },
+                    "compute_units": None,
+                    "prompt_tokens_details": {
+                        "audio_tokens": 0,
+                        "cache_write_tokens": None,
+                        "cached_tokens": 1792,
+                        "image_tokens": None,
+                        "text_tokens": None,
+                    },
+                },
+                "model_provider": "openai",
+                "model_name": "gpt-4.1-nano-2025-04-14",
+                "system_fingerprint": "fp_639977306b",
+                "id": "chatcmpl-EIZpXrM5qPNUi952x44517OhvKlsq",
+                "service_tier": "default",
+                "finish_reason": "stop",
+                "logprobs": None,
+            },
+            id="lc_run--01a052d8-ece5-7563-becc-7ab37f2a2d24-0",
+            tool_calls=[],
+            invalid_tool_calls=[],
+            usage_metadata={
+                "input_tokens": 1873,
+                "output_tokens": 38,
+                "total_tokens": 1911,
+                "input_token_details": {"audio": 0, "cache_read": 1792},
+                "output_token_details": {"audio": 0, "reasoning": 0},
+            },
+        ),
+    ]
+}
